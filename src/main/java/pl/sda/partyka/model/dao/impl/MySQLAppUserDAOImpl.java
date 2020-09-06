@@ -4,6 +4,7 @@ import pl.sda.partyka.model.AppUser;
 import pl.sda.partyka.model.dao.AbstractDAO;
 import pl.sda.partyka.model.dao.AppUserDAO;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.HashSet;
@@ -29,14 +30,14 @@ public class MySQLAppUserDAOImpl extends AbstractDAO implements AppUserDAO {
     }
 
     @Override
-    public AppUser getUserByEmail(String email) {
+    public AppUser getUserByEmail(String email) throws NoResultException {
         TypedQuery<AppUser> query = entityManager.createQuery
                 ("select u from AppUser u where u.email = :email", AppUser.class);
         return query.setParameter("email", email).getSingleResult();
     }
 
     @Override
-    public AppUser getUserByLogin(String login) {
+    public AppUser getUserByLogin(String login) throws NoResultException {
         TypedQuery<AppUser> query = entityManager.createQuery
                 ("select u from AppUser u where u.login = :login", AppUser.class);
         return query.setParameter("login", login).getSingleResult();

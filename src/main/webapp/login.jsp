@@ -24,8 +24,8 @@
         <c:if test="${errors != null}">
             <c:forEach items="${errors}" var="error">
                 <div class="alert alert-warning">
-                    <strong>${error.header}</strong> <br>
-                    <p>${error.message}<p>
+                    <strong>${error.errorHeader}</strong> <br>
+                    <p>${error.errorMessage}<p>
                 </div>
             </c:forEach>
         </c:if>
